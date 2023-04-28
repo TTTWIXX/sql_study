@@ -1,7 +1,6 @@
 
 
 
-
 SELECT * FROM tb_sal_his;
 
 -- 집계 함수 (다중행 함수)
@@ -31,6 +30,10 @@ FROM tb_sal_his
 
 SELECT * FROM tb_emp;
 
+
+
+
+
 SELECT 
     COUNT(emp_no) AS "총 사원수"
     , COUNT(direct_manager_emp_no) "dmen"
@@ -44,7 +47,6 @@ FROM tb_emp;
 SELECT 
     direct_manager_emp_no
 FROM tb_emp;
-
 
 -- GROUP BY : 지정된 컬럼으로 소그룹화 한 후 집계함수 적용
 -- 부서별로 가장 어린사람의 생년월일, 연장자의 생년월일 부서별 총 사원 수를 조회
@@ -64,7 +66,9 @@ GROUP BY dept_cd
 ORDER BY dept_cd
 ;
 
+
 -- 사원별 누적 급여수령액 조회
+
 SELECT *
 FROM TB_SAL_HIS tsh 
 ORDER BY EMP_NO,PAY_DE;
@@ -75,7 +79,6 @@ GROUP BY EMP_NO
 ORDER BY EMP_NO;
 
 
-
 SELECT 
     emp_no "사번"
     , SUM(pay_amt) "누적 수령액"
@@ -84,7 +87,10 @@ GROUP BY emp_no
 ORDER BY emp_no
 ;
 
+
 -- 사원별로 급여를 제일 많이받았을 때, 제일 적게받았을 때, 평균적으로 얼마받았는지 조회
+
+
 SELECT 
     emp_no "사번"
     , TO_CHAR(MAX(pay_amt), 'L999,999,999') "최고 수령액"
@@ -98,6 +104,7 @@ ORDER BY emp_no
 
 -- 사원별로 2019년에 급여를 제일 많이받았을 때, 제일 적게받았을 때, 평균적으로 얼마받았는지 조회
 -- GROUP BY 절에 있는 WHERE 절은 그룹화하기 전에 필터링
+
 SELECT 
     emp_no "사번"
     , TO_CHAR(MAX(pay_amt), 'L999,999,999') "최고 수령액"
@@ -132,6 +139,8 @@ ORDER BY dept_cd
 
 -- 사원별로 급여를 제일 많이받았을 때, 제일 적게받았을 때, 평균적으로 얼마받았는지 조회
 -- 평균 급여가 450만원 이상인 사람만 조회
+
+
 SELECT 
     emp_no "사번"
     , TO_CHAR(MAX(pay_amt), 'L999,999,999') "최고 수령액"
